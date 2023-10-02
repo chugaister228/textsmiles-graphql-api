@@ -5,9 +5,9 @@ namespace TextSmiles.API.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public DbSet<Smile> Smiles => Set<Smile>();
-        public DbSet<Emotion> Tags => Set<Emotion>();
-        public DbSet<User> Users => Set<User>();
+        public DbSet<Emotion> Emotions { get; set; } = default!;
+        public DbSet<Smile> Smiles { get; set; } = default!;
+        public DbSet<User> Users { get; set; } = default!;
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }

@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TextSmiles.API.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Tags",
+                name: "Emotions",
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -20,7 +20,7 @@ namespace TextSmiles.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tags", x => x.ID);
+                    table.PrimaryKey("PK_Emotions", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -42,18 +42,18 @@ namespace TextSmiles.API.Migrations
                     ID = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Text = table.Column<string>(type: "TEXT", nullable: true),
-                    TagID = table.Column<Guid>(type: "TEXT", nullable: false),
-                    UserID = table.Column<Guid>(type: "TEXT", nullable: false),
-                    EmotionID = table.Column<Guid>(type: "TEXT", nullable: true)
+                    EmotionID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    UserID = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Smiles", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Smiles_Tags_EmotionID",
+                        name: "FK_Smiles_Emotions_EmotionID",
                         column: x => x.EmotionID,
-                        principalTable: "Tags",
-                        principalColumn: "ID");
+                        principalTable: "Emotions",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Smiles_Users_UserID",
                         column: x => x.UserID,
@@ -80,7 +80,7 @@ namespace TextSmiles.API.Migrations
                 name: "Smiles");
 
             migrationBuilder.DropTable(
-                name: "Tags");
+                name: "Emotions");
 
             migrationBuilder.DropTable(
                 name: "Users");

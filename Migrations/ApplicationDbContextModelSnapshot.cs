@@ -28,7 +28,7 @@ namespace TextSmiles.API.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Emotions");
                 });
 
             modelBuilder.Entity("TextSmiles.API.Data.Entities.Smile", b =>
@@ -37,13 +37,10 @@ namespace TextSmiles.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("EmotionID")
+                    b.Property<Guid>("EmotionID")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("TagID")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Text")
@@ -77,15 +74,21 @@ namespace TextSmiles.API.Migrations
 
             modelBuilder.Entity("TextSmiles.API.Data.Entities.Smile", b =>
                 {
-                    b.HasOne("TextSmiles.API.Data.Entities.Emotion", null)
+                    b.HasOne("TextSmiles.API.Data.Entities.Emotion", "Emotion")
                         .WithMany("Smiles")
-                        .HasForeignKey("EmotionID");
+                        .HasForeignKey("EmotionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("TextSmiles.API.Data.Entities.User", null)
+                    b.HasOne("TextSmiles.API.Data.Entities.User", "User")
                         .WithMany("Smiles")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Emotion");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TextSmiles.API.Data.Entities.Emotion", b =>

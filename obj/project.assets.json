@@ -3316,6 +3316,7 @@
       "HotChocolate.AspNetCore >= 13.5.1",
       "HotChocolate.Data >= 13.5.1",
       "HotChocolate.Data.EntityFramework >= 13.5.1",
+      "Microsoft.EntityFrameworkCore >= 7.0.11",
       "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.11",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.11",
       "Swashbuckle.AspNetCore >= 6.5.0"
@@ -3372,6 +3373,10 @@
           "HotChocolate.Data.EntityFramework": {
             "target": "Package",
             "version": "[13.5.1, )"
+          },
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[7.0.11, )"
           },
           "Microsoft.EntityFrameworkCore.Sqlite": {
             "target": "Package",
